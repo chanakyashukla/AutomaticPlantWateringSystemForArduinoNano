@@ -1,0 +1,24 @@
+int water; //random variable 
+void setup() {
+  pinMode(13,OUTPUT); //output pin for relay board, this will sent signal to the relay, or you can connect it directly with the DC motor.
+  pinMode(12,INPUT); //input pin coming from soil sensor
+}
+
+void loop() { 
+  water = digitalRead(12);  // reading the coming digital signal from the soil sensor's DO pin.
+  if(water == LOW) // if water level is full then cut the relay 
+  {
+  digitalWrite(13,LOW); // low is to cut the relay, and also to turn of DC motor.
+  }
+  else
+  {
+  digitalWrite(13,HIGH); //high to continue proving signal and water supply, and keeps the DC motor running.
+  }
+  delay(1000); 
+}
+
+//I modified this, I replaced the relay swith and connected pin 13 to direct DC water motor pump.
+//I also reversed the code from LOW to HIGH and vice-versa, because there is no logical point to turn the pump on when the soil is wet.
+//Logically the water pump should start when the sensor detects that the soil is losing moisture.
+
+// thanks, the code is modified by Chanakya Shukla on 2 Nov. 2023 at 14:35.
